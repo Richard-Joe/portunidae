@@ -1,0 +1,10 @@
+portunidae v1.0
+
+Use -h for short descriptions and --help for more details.
+
+USAGE:
+  portunidae PATTERN [PATH ...]
+
+POSITIONAL ARGUMENTS:
+  <PATTERN>   A regular expression used for searching.
+  <PATH>...   A file or directory to search.

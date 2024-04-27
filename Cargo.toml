@@ -1,0 +1,6 @@
+[workspace]
+
+members = [
+    "entry", "flags",
+]
+resolver = "2"
