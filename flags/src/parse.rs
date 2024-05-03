@@ -15,30 +15,37 @@ impl Parser {
     pub fn parse(&self, rawargs: env::ArgsOs) -> ParseResult<Args> {
         let mut args = Args::default();
         let mut p = lexopt::Parser::from_args(rawargs);
+        let mut v: Vec<String> = vec![];
         while let Some(arg) = p.next().unwrap().take() {
             match arg {
                 lexopt::Arg::Short(short) if short == 'h' => {
                     args.special = Some(SpecialMode::HelpShort);
                 }
                 lexopt::Arg::Short(short) => {
-                    println!("short: {}", short);
+                    return ParseResult::Err(anyhow::anyhow!("unknow {}", short));
                 }
                 lexopt::Arg::Long(long) if long == "help" => {
                     args.special = Some(SpecialMode::HelpLong);
                 }
                 lexopt::Arg::Long(long) => {
-                    println!("long: {}", long);
+                    return ParseResult::Err(anyhow::anyhow!("unknow {}", long));
                 }
                 lexopt::Arg::Value(value) => {
-                    println!("value: {}", value.into_string().unwrap());
+                    v.push(value.into_string().unwrap());
                 }
             }
+        }
+
+        if v.len() < 2 {
+            args.special = Some(SpecialMode::HelpShort);
         }
 
         if let Some(special) = args.special.take() {
             return ParseResult::Special(special);
         }
 
+        args.patterns = v[1].clone();
+        args.positional = v[2].clone();
         ParseResult::Ok(args)
     }
 }

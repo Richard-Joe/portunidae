@@ -11,4 +11,6 @@ pub struct Args {
     pub special: Option<SpecialMode>,
     /// 正则表达式
     pub patterns: String,
+    /// 搜索位置
+    pub positional: String,
 }

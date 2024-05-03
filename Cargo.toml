@@ -1,6 +1,6 @@
 [workspace]
 
 members = [
-    "entry", "flags",
+    "entry", "flags", "search",
 ]
 resolver = "2"

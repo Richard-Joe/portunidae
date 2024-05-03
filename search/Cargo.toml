@@ -1,5 +1,5 @@
 [package]
-name = "entry"
+name = "search"
 version = "0.1.0"
 edition = "2021"
 
@@ -7,6 +7,4 @@ edition = "2021"
 
 [dependencies]
 
-flags = { path = "../flags" }
-search = { path = "../search" }
-
+walkdir = "2.4.0"
